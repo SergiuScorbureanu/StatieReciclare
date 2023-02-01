@@ -34,14 +34,14 @@ float Sticla::getGreutate() const {
     return greutate;
 }
 
-void Sticla::setTip(const std::string &tip) {
-    Sticla::tip = tip;
+void Sticla::setTip(const std::string &tip_) {
+    Sticla::tip = tip_;
 }
 
-void Sticla::setCuloare(const std::string &culoare) {
-    Sticla::culoare = culoare;
+void Sticla::setCuloare(const std::string &culoare_) {
+    Sticla::culoare = culoare_;
 }
 
-void Sticla::setGreutate(float greutate) {
-    Sticla::greutate = greutate;
+void Sticla::setGreutate(float greutate_) {
+    Sticla::greutate = greutate_;
 }

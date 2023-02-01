@@ -35,18 +35,18 @@ float UtilajSticla::getTotalReciclat() const {
     return totalReciclat;
 }
 
-void UtilajSticla::procesare(Sticla sticla_){
+void UtilajSticla::procesare(Sticla sticla){
 
     std::cout << "\n\tSe proceseaza deseul din sticla...";
-    float greutateMin = sticla_.getGreutate() * 0.6;
-    float greutateMax = sticla_.getGreutate() * 0.9;
+    float greutateMin = sticla.getGreutate() * 0.6;
+    float greutateMax = sticla.getGreutate() * 0.9;
     float greutatePierduta = greutateMin + static_cast <float> (rand()) /
                                            (static_cast <float> (RAND_MAX / (greutateMax - greutateMin)));
-    sticla_.setGreutate(greutatePierduta);
+    sticla.setGreutate(greutatePierduta);
 
-    this->totalMateriePrima += sticla_.getGreutate();
+    this->totalMateriePrima += sticla.getGreutate();
     this->totalReciclat++;
-    std::cout << "\n\tS-a obtinut o cantitate de " << sticla_.getGreutate()
+    std::cout << "\n\tS-a obtinut o cantitate de " << sticla.getGreutate()
               << " kilograme de sticla bruta.";
 
     if (totalReciclat == capacitateMax) {

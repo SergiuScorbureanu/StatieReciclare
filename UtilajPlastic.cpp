@@ -18,6 +18,7 @@ UtilajPlastic &UtilajPlastic::operator=(const UtilajPlastic &other) {
     capacitateMax = other.capacitateMax;
     totalReciclat = other.totalReciclat;
     totalMateriePrima = other.totalMateriePrima;
+    return *this;
 }
 UtilajPlastic::~UtilajPlastic() {}
 
@@ -35,28 +36,28 @@ float UtilajPlastic::getTotalReciclat() const {
     return totalReciclat;
 }
 
-bool UtilajPlastic::verificare(Plastic &plastic_){
-    if(plastic_.getTip() == "pet" || plastic_.getTip() == "pete") {
+bool UtilajPlastic::verificare(Plastic &plastic){
+    if(plastic.getTip() == "pet" || plastic.getTip() == "pete") {
         std::cout << "\n\tDeseul intra in sectiunea de * Polietilen tereftalat * pentru prelucrare.";
         return true;
     }
-    else if(plastic_.getTip() == "hdpe" || plastic_.getTip() == "pe-hd") {
+    else if(plastic.getTip() == "hdpe" || plastic.getTip() == "pe-hd") {
         std::cout << "\n\tDeseul intra in sectiunea de * Polietilena de inalta densitate * pentru prelucrar.";
         return true;
     }
-    else if(plastic_.getTip() == "pvc" || plastic_.getTip() == "v") {
+    else if(plastic.getTip() == "pvc" || plastic.getTip() == "v") {
         std::cout << "\n\tDeseul intra in sectiunea de * Clorura de polivinil * pentru prelucrare.";
         return true;
     }
-    else if(plastic_.getTip() == "ldpe" || plastic_.getTip() == "pe-ld") {
+    else if(plastic.getTip() == "ldpe" || plastic.getTip() == "pe-ld") {
         std::cout << "\n\tDeseul intra in sectiunea de * Polietilena cu densitate scazuta * pentru prelucrare.";
         return true;
     }
-    else if(plastic_.getTip() == "pp") {
+    else if(plastic.getTip() == "pp") {
         std::cout << "\n\tDeseul intra in sectiunea de * Polipropilena * pentru prelucrare.";
         return true;
     }
-    else if(plastic_.getTip() == "ps") {
+    else if(plastic.getTip() == "ps") {
         std::cout << "\n\tDeseul intra in sectiunea de * Polistiren * pentru prelucrare.";
         return true;
     }
@@ -66,18 +67,18 @@ bool UtilajPlastic::verificare(Plastic &plastic_){
     }
 }
 
-void UtilajPlastic::procesare(Plastic plastic_) {
-    if(plastic_.getGreutate() != 0) {
+void UtilajPlastic::procesare(Plastic plastic) {
+    if(plastic.getGreutate() != 0) {
         std::cout << "\n\tSe proceseaza deseul...";
-        float greutateMin = plastic_.getGreutate() * 0.5;
-        float greutateMax = plastic_.getGreutate() * 0.8;
+        float greutateMin = plastic.getGreutate() * 0.5;
+        float greutateMax = plastic.getGreutate() * 0.8;
         float greutatePierduta = greutateMin + static_cast <float> (rand()) /
                                                (static_cast <float> (RAND_MAX / (greutateMax - greutateMin)));
-        plastic_.setGreutate(greutatePierduta);
+        plastic.setGreutate(greutatePierduta);
 
         this->totalReciclat++;
-        this->totalMateriePrima += plastic_.getGreutate();
-        std::cout << "\n\tS-a obtinut o cantitate de " << plastic_.getGreutate()
+        this->totalMateriePrima += plastic.getGreutate();
+        std::cout << "\n\tS-a obtinut o cantitate de " << plastic.getGreutate()
                   << " kilograme de materie prima din plastic.";
 
         //      if(plastic_.getTip() == "pet")
@@ -96,7 +97,7 @@ void UtilajPlastic::golire() {
     std::cout << "\n\tUtilajul de reciclare al plasticului a fost golit.";
 }
 
-void UtilajPlastic::initializare(Plastic plastic_) {
-    if(verificare(plastic_))
-        procesare(plastic_);
+void UtilajPlastic::initializare(Plastic plastic) {
+    if(verificare(plastic))
+        procesare(plastic);
 }

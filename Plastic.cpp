@@ -27,10 +27,10 @@ float Plastic::getGreutate() const {
     return greutate;
 }
 
-void Plastic::setTip(const std::string &tip) {
-    Plastic::tip = tip;
+void Plastic::setTip(const std::string &tip_) {
+    Plastic::tip = tip_;
 }
 
-void Plastic::setGreutate(float greutate) {
-    Plastic::greutate = greutate;
+void Plastic::setGreutate(float greutate_) {
+    Plastic::greutate = greutate_;
 }
