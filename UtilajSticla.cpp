@@ -31,16 +31,24 @@ std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla) {
     return os;
 }
 
-float UtilajSticla::getTotalReciclat() const {
-    return totalReciclat;
+bool UtilajSticla::verificare(Sticla &sticla) {
+
+    std::vector<std::string> culori = {"rosu", "galben", "albastru", "violet", "maro"};
+
+    for(const auto&c : culori) {
+        if(c == sticla.getCuloare())
+            return true;
+    }
+    std::cout << "\n\tDeseul introdus nu poate fi reciclat!";
+    return false;
 }
 
 void UtilajSticla::procesare(Sticla sticla){
 
     std::cout << "\n\tSe proceseaza deseul din sticla...";
-    float greutateMin = sticla.getGreutate() * 0.6;
-    float greutateMax = sticla.getGreutate() * 0.9;
-    float greutatePierduta = greutateMin + static_cast <float> (rand()) /
+    double greutateMin = sticla.getGreutate() * 0.6;
+    double greutateMax = sticla.getGreutate() * 0.9;
+    double greutatePierduta = greutateMin + static_cast <float> (rand()) /
                                            (static_cast <float> (RAND_MAX / (greutateMax - greutateMin)));
     sticla.setGreutate(greutatePierduta);
 
@@ -50,14 +58,19 @@ void UtilajSticla::procesare(Sticla sticla){
               << " kilograme de sticla bruta.";
 
     if (totalReciclat == capacitateMax) {
-        std::cout << "\n\tCapacitatea maxima a fost atinsa! Se initiaza procesul de golire al utilajului...\n";
+        std::cout << "\n\n\tCapacitatea maxima a fost atinsa! Se initiaza procesul de golire al utilajului...\n";
         golire();
     }
 }
 
 void UtilajSticla::golire(){
-    std::cout << "\n\tS-a obtinut un total de " << totalMateriePrima << " kilograme de sticla de culoare " << sticla_.getCuloare() << std::endl;
+    std::cout << "\n\tS-a obtinut un total de " << totalMateriePrima << " kilograme de sticla";
     totalMateriePrima = 0;
     totalReciclat = 0;
-    std::cout << "\tUtilajul de reciclare a sticlei a fost golit.";
+    std::cout << "\n\tUtilajul de reciclare a sticlei a fost golit." << std::endl;
+}
+
+void UtilajSticla::prelucrare(Sticla sticla) {
+    if(verificare(sticla))
+        procesare(sticla);
 }

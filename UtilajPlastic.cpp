@@ -1,6 +1,6 @@
 #include "UtilajPlastic.h"
 
-UtilajPlastic::UtilajPlastic(std::string nume, std::string producator, const float capacitateMax, int totalReciclat, float totalMateriePrima)
+UtilajPlastic::UtilajPlastic(std::string nume, std::string producator, const int capacitateMax, int totalReciclat, float totalMateriePrima)
         : capacitateMax(capacitateMax) {
     this->nume = nume;
     this->producator = producator;
@@ -30,10 +30,6 @@ std::ostream& operator<<(std::ostream& os, const UtilajPlastic& utilajPlastic) {
        << "total materie prima: " << utilajPlastic.totalMateriePrima << ", "
        << "plastic: " << utilajPlastic.plastic_ << "\n";
     return os;
-}
-
-float UtilajPlastic::getTotalReciclat() const {
-    return totalReciclat;
 }
 
 bool UtilajPlastic::verificare(Plastic &plastic){
@@ -70,9 +66,9 @@ bool UtilajPlastic::verificare(Plastic &plastic){
 void UtilajPlastic::procesare(Plastic plastic) {
     if(plastic.getGreutate() != 0) {
         std::cout << "\n\tSe proceseaza deseul...";
-        float greutateMin = plastic.getGreutate() * 0.5;
-        float greutateMax = plastic.getGreutate() * 0.8;
-        float greutatePierduta = greutateMin + static_cast <float> (rand()) /
+        double greutateMin = plastic.getGreutate() * 0.5;
+        double greutateMax = plastic.getGreutate() * 0.8;
+        double greutatePierduta = greutateMin + static_cast <float> (rand()) /
                                                (static_cast <float> (RAND_MAX / (greutateMax - greutateMin)));
         plastic.setGreutate(greutatePierduta);
 
@@ -84,7 +80,7 @@ void UtilajPlastic::procesare(Plastic plastic) {
         //      if(plastic_.getTip() == "pet")
 
         if (totalReciclat == capacitateMax) {
-            std::cout << "\n\tCapacitatea maxima a fost atinsa! Se initiaza procesul de golire al utilajului...\n";
+            std::cout << "\n\n\tCapacitatea maxima a fost atinsa! Se initiaza procesul de golire al utilajului...\n";
             golire();
         }
     }
@@ -94,10 +90,10 @@ void UtilajPlastic::golire() {
     std::cout << "\tS-a obtinut un total de " << totalMateriePrima << " kilograme de materie prima din plastic.";
     totalMateriePrima = 0;
     totalReciclat = 0;
-    std::cout << "\n\tUtilajul de reciclare al plasticului a fost golit.";
+    std::cout << "\n\tUtilajul de reciclare al plasticului a fost golit." << std::endl;
 }
 
-void UtilajPlastic::initializare(Plastic plastic) {
+void UtilajPlastic::prelucrare(Plastic plastic) {
     if(verificare(plastic))
         procesare(plastic);
 }

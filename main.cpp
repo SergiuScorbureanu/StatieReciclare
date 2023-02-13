@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <random>
 #include "Plastic.h"
 #include "Plastic.cpp"
@@ -13,12 +12,8 @@
 
 int main()
 {
-
-    //BUG-URI:
-    //LA STICLA trebuie puse deseuri de aceeasi culoare in acelasi utilaj!!!
-
     UtilajPlastic presaPlastic = {"presa", "Bosch", 10, 0, 0};
-    UtilajSticla topitorSticla = {"topitor", "Daewoo", 10, 0, 0};
+    UtilajSticla topitorSticla = {"topitor", "Daewoo", 3, 0, 0};
     std::cout << "\n\t *** STATIE PENTRU RECICLARE ***\n";
     char continuare = 'd';
     do {
@@ -38,7 +33,7 @@ int main()
             }
         }
         if (optiune == 1) {
-            // Meniu pentru datele deseului
+            // Meniu pentru datele deseului de plastic
             Plastic plastic;
             std::string tip;
             std::cout << "\n\tIntroduceti tipul deseului (pet, pvc, etc.): ";
@@ -58,15 +53,11 @@ int main()
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
             }
-            presaPlastic.initializare(plastic);
+            presaPlastic.prelucrare(plastic);
 
         } else if (optiune == 2) {
+            // Meniu pentru datele deseului de sticla
             Sticla sticla;
-            std::string tip;
-            std::cout << "\n\tIntroduceti tipul deseului: ";
-            std::cin >> tip;
-            sticla.setTip(tip);
-
             std::string culoare;
             std::cout << "\tIntroduceti culoarea deseului: ";
             std::cin >> culoare;
@@ -85,7 +76,7 @@ int main()
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
             }
-            topitorSticla.procesare(sticla);
+            topitorSticla.prelucrare(sticla);
         }
 
         while (true) {
@@ -124,14 +115,4 @@ int main()
         presaPlastic.golire();
     } else if (optiune == 2)
         topitorSticla.golire();
-
-
-    // MENIU loop
-    // 1. Variabila bool verificat rulare meniu
-    // 2. Un while (isLoading)
-    // 3. Prompt user (yes or no); schimb sau nu variabila de continuitate
-
-
-    //------------------------------------------------------------------------------------------
-    //LA STICLA trebuie puse deseuri de aceeasi culoare in acelasi utilaj!!!
 }

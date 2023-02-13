@@ -4,6 +4,7 @@
 #include "Sticla.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 class UtilajSticla {
 private:
@@ -21,9 +22,10 @@ public:
     UtilajSticla& operator=(const UtilajSticla& other);
     ~UtilajSticla();
     friend std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla);
-    float getTotalReciclat() const;
+    bool verificare(Sticla &sticla_);
     void procesare(Sticla sticla_);
     void golire();
+    void prelucrare(Sticla sticla_);
 };
 
 
