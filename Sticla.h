@@ -7,14 +7,14 @@
 class Sticla {
 private:
     std::string culoare;
-    float greutate;
+    float greutate{};
 
 public:
     Sticla() = default;
     Sticla(std::string culoare, float greutate);
     Sticla(const Sticla& other);
     Sticla& operator=(const Sticla& other);
-    ~Sticla() {}
+    ~Sticla() = default;
 
     friend std::ostream& operator<<(std::ostream& os, const Sticla& sticla);
 

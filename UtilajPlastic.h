@@ -9,9 +9,9 @@ class UtilajPlastic{
 private:
     std::string nume;
     std::string producator;
-    int capacitateMax;
-    int totalReciclat;
-    float totalMateriePrima;
+    int capacitateMax{};
+    int totalReciclat{};
+    float totalMateriePrima{};
     Plastic plastic_;
 
 public:
@@ -21,7 +21,7 @@ public:
     UtilajPlastic& operator=(const UtilajPlastic& other);
     ~UtilajPlastic();
     friend std::ostream& operator<<(std::ostream& os, const UtilajPlastic& utilajPlastic);
-    bool verificare(Plastic &plastic_);
+    static bool verificare(Plastic &plastic_);
     void procesare(Plastic plastic_);
     void golire();
     void prelucrare(Plastic plastic_);

@@ -1,7 +1,9 @@
 #include "Plastic.h"
 
+#include <utility>
+
 Plastic::Plastic(std::string tip, float greutate) {
-    this->tip = tip;
+    this->tip = std::move(tip);
     this->greutate = greutate;
 }
 

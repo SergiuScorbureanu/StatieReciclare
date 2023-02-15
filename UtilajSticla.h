@@ -10,9 +10,9 @@ class UtilajSticla {
 private:
     std::string nume;
     std::string producator;
-    float capacitateMax; //const
-    float totalReciclat;
-    float totalMateriePrima;
+    float capacitateMax{}; //const
+    float totalReciclat{};
+    float totalMateriePrima{};
     Sticla sticla_;
 
 public:
@@ -22,7 +22,7 @@ public:
     UtilajSticla& operator=(const UtilajSticla& other);
     ~UtilajSticla();
     friend std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla);
-    bool verificare(Sticla &sticla_);
+    static bool verificare(Sticla &sticla_);
     void procesare(Sticla sticla_);
     void golire();
     void prelucrare(Sticla sticla_);

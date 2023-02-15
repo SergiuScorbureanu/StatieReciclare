@@ -1,9 +1,11 @@
 #include "UtilajPlastic.h"
 
+#include <utility>
+
 UtilajPlastic::UtilajPlastic(std::string nume, std::string producator, const int capacitateMax, int totalReciclat, float totalMateriePrima)
         : capacitateMax(capacitateMax) {
-    this->nume = nume;
-    this->producator = producator;
+    this->nume = std::move(nume);
+    this->producator = std::move(producator);
     this->totalReciclat = totalReciclat;
     this->totalMateriePrima = totalMateriePrima;
 }
@@ -20,7 +22,7 @@ UtilajPlastic &UtilajPlastic::operator=(const UtilajPlastic &other) {
     totalMateriePrima = other.totalMateriePrima;
     return *this;
 }
-UtilajPlastic::~UtilajPlastic() {}
+UtilajPlastic::~UtilajPlastic() = default;
 
 std::ostream& operator<<(std::ostream& os, const UtilajPlastic& utilajPlastic) {
     os << "nume: " << utilajPlastic.nume << ", "
@@ -76,8 +78,6 @@ void UtilajPlastic::procesare(Plastic plastic) {
         this->totalMateriePrima += plastic.getGreutate();
         std::cout << "\n\tS-a obtinut o cantitate de " << plastic.getGreutate()
                   << " kilograme de materie prima din plastic.";
-
-        //      if(plastic_.getTip() == "pet")
 
         if (totalReciclat == capacitateMax) {
             std::cout << "\n\n\tCapacitatea maxima a fost atinsa! Se initiaza procesul de golire al utilajului...\n";

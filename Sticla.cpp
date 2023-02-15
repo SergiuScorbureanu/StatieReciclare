@@ -1,7 +1,9 @@
 #include "Sticla.h"
 
+#include <utility>
+
 Sticla::Sticla(std::string culoare, float greutate) {
-    this->culoare = culoare;
+    this->culoare = std::move(culoare);
     this->greutate = greutate;
 }
 

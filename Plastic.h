@@ -7,14 +7,14 @@
 class Plastic {
 private:
     std::string tip;
-    float greutate;
+    float greutate{};
 
 public:
     Plastic() = default;
     Plastic(std::string tip, float greutate);
     Plastic(const Plastic& other);
     Plastic& operator=(const Plastic& other);
-    ~Plastic() {}
+    ~Plastic() = default;
 
     friend std::ostream& operator<<(std::ostream& os, const Plastic& plastic);
 

@@ -1,8 +1,10 @@
 #include "UtilajSticla.h"
 
+#include <utility>
+
 UtilajSticla::UtilajSticla(std::string nume, std::string producator, float capacitateMax, float totalReciclat, float totalMateriePrima) {
-    this->nume = nume;
-    this->producator = producator;
+    this->nume = std::move(nume);
+    this->producator = std::move(producator);
     this->capacitateMax = capacitateMax;
     this->totalReciclat = totalReciclat;
     this->totalMateriePrima = totalMateriePrima;
@@ -20,7 +22,7 @@ UtilajSticla &UtilajSticla::operator=(const UtilajSticla& other){
     totalMateriePrima = other.totalMateriePrima;
     return *this;
 }
-UtilajSticla::~UtilajSticla() {}
+UtilajSticla::~UtilajSticla() = default;
 
 std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla) {
     os << "nume: " << utilajSticla.nume << ", "
