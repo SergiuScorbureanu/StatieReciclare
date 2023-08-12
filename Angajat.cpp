@@ -7,7 +7,7 @@ Angajat::Angajat(std::string nume, std::string prenume, int salariu) {
     this->salariu = salariu;
 }
 
-Angajat::Angajat(const Angajat &other) : nume(other.nume), prenume(other.prenume), salariu(other.salariu){};
+Angajat::Angajat(const Angajat &other) : nume(other.nume), prenume(other.prenume), salariu(other.salariu){}
 
 Angajat &Angajat::operator=(const Angajat &other) {
     nume = other.nume;
