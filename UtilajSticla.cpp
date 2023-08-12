@@ -1,6 +1,7 @@
 #include "UtilajSticla.h"
 
 #include <utility>
+#include "Exceptii.h"
 
 UtilajSticla::UtilajSticla(std::string nume, std::string producator, float capacitateMax, float totalReciclat, float totalMateriePrima) {
     this->nume = std::move(nume);
@@ -10,7 +11,7 @@ UtilajSticla::UtilajSticla(std::string nume, std::string producator, float capac
     this->totalMateriePrima = totalMateriePrima;
 }
 
-UtilajSticla::UtilajSticla(const UtilajSticla& other) :
+UtilajSticla::UtilajSticla(const UtilajSticla& other) : Utilaj(other),
         nume(other.nume), producator(other.producator), capacitateMax(other.capacitateMax),
         totalReciclat(other.totalReciclat),totalMateriePrima(other.totalMateriePrima){}
 
@@ -41,11 +42,10 @@ bool UtilajSticla::verificare(Sticla &sticla) {
         if(c == sticla.getCuloare())
             return true;
     }
-    std::cout << "\n\tDeseul introdus nu poate fi reciclat!";
-    return false;
+    throw eroare_deseu_sticla("\tDeseul introdus nu poate fi reciclat!");
 }
 
-void UtilajSticla::procesare(Sticla sticla){
+void UtilajSticla::procesare(Sticla &sticla){
 
     std::cout << "\n\tSe proceseaza deseul din sticla...";
     double greutateMin = sticla.getGreutate() * 0.6;
@@ -75,4 +75,8 @@ void UtilajSticla::golire(){
 void UtilajSticla::prelucrare(Sticla sticla) {
     if(verificare(sticla))
         procesare(sticla);
+}
+
+const std::string &UtilajSticla::getNume() const {
+    return nume;
 }

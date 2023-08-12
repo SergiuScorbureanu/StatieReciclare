@@ -9,11 +9,32 @@
 #include "UtilajPlastic.cpp"
 #include "UtilajSticla.h"
 #include "UtilajSticla.cpp"
+#include "Utilaj.h"
+#include "Utilaj.cpp"
+#include "Exceptii.h"
+#include "CreareObiecte.h"
+#include "Angajat.h"
+#include "Angajat.cpp"
 
 int main()
 {
-    UtilajPlastic presaPlastic = {"presa", "Bosch", 10, 0, 0};
-    UtilajSticla topitorSticla = {"topitor", "Daewoo", 3, 0, 0};
+    std::cout << "\tStare angajati si utilaje:\n";
+    std::vector<std::shared_ptr<Utilaj>> utilaje;
+    creare_utilaje(utilaje);
+
+    std::vector<std::shared_ptr<Angajat>> angajati;
+    creare_angajati(angajati);
+
+    try {
+        asociere_utilaje(angajati, utilaje);
+        for(size_t i = 0; i < std::size(angajati); ++i) {
+            verificare_utilaj(angajati[i]);
+        }
+    }
+    catch (eroare_asociere_utilaje &err) {
+        std::cout << err.what() << "\n";
+    }
+
     std::cout << "\n\t *** STATIE PENTRU RECICLARE ***\n";
     char continuare = 'd';
     do {
@@ -53,7 +74,13 @@ int main()
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
             }
-            presaPlastic.prelucrare(plastic);
+
+            try {
+                utilaje[0]->prelucrare(plastic);
+            }
+            catch (eroare_deseu_plastic &err) {
+                std::cout << err.what() << "\n";
+            }
 
         } else if (optiune == 2) {
             // Meniu pentru datele deseului de sticla
@@ -76,7 +103,13 @@ int main()
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
             }
-            topitorSticla.prelucrare(sticla);
+
+            try {
+                utilaje[2]->prelucrare(sticla);
+            }
+            catch (eroare_deseu_sticla &err) {
+                std::cout << err.what() << "\n";
+            }
         }
 
         while (true) {
@@ -112,7 +145,7 @@ int main()
 
     std::cout << std::endl;
     if (optiune == 1) {
-        presaPlastic.golire();
+        utilaje[0]->golire();
     } else if (optiune == 2)
-        topitorSticla.golire();
+        utilaje[2]->golire();
 }

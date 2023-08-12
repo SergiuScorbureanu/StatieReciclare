@@ -1,16 +1,18 @@
 #include "UtilajPlastic.h"
 
 #include <utility>
+#include "Exceptii.h"
 
-UtilajPlastic::UtilajPlastic(std::string nume, std::string producator, const int capacitateMax, int totalReciclat, float totalMateriePrima)
-        : capacitateMax(capacitateMax) {
+UtilajPlastic::UtilajPlastic(std::string nume, std::string producator, const int capacitateMax, int totalReciclat, float totalMateriePrima) {
     this->nume = std::move(nume);
     this->producator = std::move(producator);
+    this->capacitateMax = capacitateMax;
     this->totalReciclat = totalReciclat;
     this->totalMateriePrima = totalMateriePrima;
+
 }
 
-UtilajPlastic::UtilajPlastic(const UtilajPlastic &other) :
+UtilajPlastic::UtilajPlastic(const UtilajPlastic &other) : Utilaj(other),
         nume(other.nume), producator(other.producator), capacitateMax(other.capacitateMax),
         totalReciclat(other.totalReciclat), totalMateriePrima(other.totalMateriePrima), plastic_(other.plastic_) {}
 
@@ -60,12 +62,11 @@ bool UtilajPlastic::verificare(Plastic &plastic){
         return true;
     }
     else {
-        std::cout << "\n\tDeseul nu este reciclabil!";
-        return false;
+        throw eroare_deseu_plastic("\tDeseul nu poate fi reciclat!");
     }
 }
 
-void UtilajPlastic::procesare(Plastic plastic) {
+void UtilajPlastic::procesare(Plastic &plastic) {
     if(plastic.getGreutate() != 0) {
         std::cout << "\n\tSe proceseaza deseul...";
         double greutateMin = plastic.getGreutate() * 0.5;
@@ -96,4 +97,9 @@ void UtilajPlastic::golire() {
 void UtilajPlastic::prelucrare(Plastic plastic) {
     if(verificare(plastic))
         procesare(plastic);
+
+}
+
+const std::string &UtilajPlastic::getNume() const {
+    return nume;
 }
