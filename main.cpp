@@ -30,11 +30,13 @@ int main()
     try {
         asociere_utilaje(angajati, utilaje);
         for(size_t i = 0; i < std::size(angajati); ++i) {
-            //verificare_utilaj(angajati[i]);
-            angajati[i]->verificare_utilaj(angajati[i]);
+            angajati[i]->verificare_utilaj();
         }
     }
     catch (eroare_asociere_utilaje &err) {
+        std::cout << err.what() << "\n";
+    }
+    catch (eroare_utilaj_liber &err) {
         std::cout << err.what() << "\n";
     }
 
@@ -102,12 +104,6 @@ int main()
             }
 
             utilaje[2]->prelucrare(sticla);
-//            try {
-//                utilaje[2]->prelucrare(sticla);
-//            }
-//            catch (eroare_deseu_sticla &err) {
-//                std::cout << err.what() << "\n";
-//            }
         }
 
         while (true) {
