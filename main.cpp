@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include "Utilaj.h"
+#include "Utilaj.cpp"
+#include "Deseu.h"
+#include "Deseu.cpp"
 #include "Plastic.h"
 #include "Plastic.cpp"
 #include "Sticla.h"
@@ -9,8 +13,6 @@
 #include "UtilajPlastic.cpp"
 #include "UtilajSticla.h"
 #include "UtilajSticla.cpp"
-#include "Utilaj.h"
-#include "Utilaj.cpp"
 #include "Exceptii.h"
 #include "CreareObiecte.h"
 #include "Angajat.h"
@@ -28,7 +30,8 @@ int main()
     try {
         asociere_utilaje(angajati, utilaje);
         for(size_t i = 0; i < std::size(angajati); ++i) {
-            verificare_utilaj(angajati[i]);
+            //verificare_utilaj(angajati[i]);
+            angajati[i]->verificare_utilaj(angajati[i]);
         }
     }
     catch (eroare_asociere_utilaje &err) {
@@ -74,13 +77,7 @@ int main()
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 }
             }
-
-            try {
-                utilaje[0]->prelucrare(plastic);
-            }
-            catch (eroare_deseu_plastic &err) {
-                std::cout << err.what() << "\n";
-            }
+            utilaje[0]->prelucrare(plastic);
 
         } else if (optiune == 2) {
             // Meniu pentru datele deseului de sticla
@@ -104,12 +101,13 @@ int main()
                 }
             }
 
-            try {
-                utilaje[2]->prelucrare(sticla);
-            }
-            catch (eroare_deseu_sticla &err) {
-                std::cout << err.what() << "\n";
-            }
+            utilaje[2]->prelucrare(sticla);
+//            try {
+//                utilaje[2]->prelucrare(sticla);
+//            }
+//            catch (eroare_deseu_sticla &err) {
+//                std::cout << err.what() << "\n";
+//            }
         }
 
         while (true) {
