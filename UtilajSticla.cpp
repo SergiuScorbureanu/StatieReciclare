@@ -83,3 +83,7 @@ void UtilajSticla::prelucrare(Deseu &deseu) {
         }
     }
 }
+
+void UtilajSticla::afisare_tip_utilaj() {
+    std::cout << "utilajul pentru deseurile de sticla.\n";
+}

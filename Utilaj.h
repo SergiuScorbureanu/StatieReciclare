@@ -26,6 +26,7 @@ public:
     virtual void procesare(Deseu &deseu) = 0;
     virtual void golire() = 0;
     virtual void prelucrare(Deseu &deseu) = 0;
+    virtual void afisare_tip_utilaj() = 0;
 };
 
 

@@ -26,6 +26,7 @@ public:
     void procesare(Deseu &deseu) override;
     void golire() override;
     void prelucrare(Deseu &deseu) override;
+    void afisare_tip_utilaj() override;
     std::shared_ptr<Utilaj> clone() const override
     {
         return std::make_shared<UtilajPlastic>(*this);

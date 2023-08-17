@@ -106,5 +106,8 @@ void UtilajPlastic::prelucrare(Deseu &deseu) {
         if (verificare(*plastic))
             procesare(*plastic);
     }
+}
 
+void UtilajPlastic::afisare_tip_utilaj() {
+    std::cout << "utilajul pentru deseurile de plastic.\n";
 }

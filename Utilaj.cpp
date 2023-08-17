@@ -30,36 +30,6 @@ std::ostream& operator<<(std::ostream& os, const Utilaj& utilaj) {
     return os;
 }
 
-//bool Utilaj::verificare(Deseu &plastic) {
-//    std::cout << "Utilajul verifica deseul de tip" + plastic.();;
-//    return true;
-//}
-//
-//void Utilaj::procesare(Plastic &plastic) {
-//    std::cout << "Utilajul proceseaza deseul de tip " + plastic.getTip();
-//}
-//
-//void Utilaj::golire() {
-//    std::cout << "Utilajul goleste containerul";
-//}
-//
-//void Utilaj::prelucrare(Plastic plastic) {
-//    std::cout << "Utilajul prelucreaza deseul de tip " + plastic.getTip();
-//}
-//
-//bool Utilaj::verificare(Sticla &sticla) {
-//    std::cout << "Utilajul verifica deseul de culoare " + sticla.getCuloare();
-//    return true;
-//}
-//
-//void Utilaj::procesare(Sticla &sticla) {
-//    std::cout << "Utilajul proceseaza deseul de culoare " + sticla.getCuloare();
-//}
-//
-//void Utilaj::prelucrare(Sticla sticla) {
-//    std::cout << "Utilajul prelucreaza deseul de culoare " + sticla.getCuloare();
-//}
-
 
 
 
