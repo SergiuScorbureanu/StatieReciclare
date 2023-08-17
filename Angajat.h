@@ -22,11 +22,7 @@ public:
     void asociaza_utilaj(std::shared_ptr<Utilaj> utilaj) {
         utilaj_ = utilaj;
     }
-    void verificare_utilaj(const std::shared_ptr<Angajat>& angajat);
-
-    const std::string &getPrenume() const;
-    const std::string &getNume() const;
-
+    void verificare_utilaj() const;
 };
 
 
