@@ -8,7 +8,7 @@ private:
     float greutate{};
 public:
     Deseu() = default;
-    Deseu(float greutate);
+    explicit Deseu(float greutate);
     Deseu (const Deseu& other);
     Deseu& operator=(const Deseu &other);
     virtual ~Deseu();
