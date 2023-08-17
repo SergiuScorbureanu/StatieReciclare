@@ -48,35 +48,5 @@ void asociere_utilaje(std::vector<std::shared_ptr<Angajat>>& angajati, std::vect
 //    }
 //}
 
-void verificare_utilaj(const std::shared_ptr<Angajat>& angajat) {
-    std::shared_ptr<Utilaj> utilaj = angajat->getUtilaj();
-
-    UtilajPlastic* utilajPlastic = dynamic_cast<UtilajPlastic*>(utilaj.get());
-    if (utilajPlastic != nullptr) {
-        std::cout << "\tAngajatul " + angajat->getNume() + " " + angajat->getPrenume() + " manevreaza utilajul pentru deseurile de plastic.\n";
-        return;
-    }
-
-    UtilajSticla* utilajSticla = dynamic_cast<UtilajSticla*>(utilaj.get());
-    if (utilajSticla != nullptr) {
-        std::cout << "\tAngajatul " + angajat->getNume() + " " + angajat->getPrenume() + " manevreaza utilajul pentru deseurile de sticla.\n";
-        return;
-    }
-}
-
-//void verificare_utilaj(const std::shared_ptr<Angajat>& angajat) {
-//    std::shared_ptr<Utilaj> utilaj = angajat->getUtilaj();
-//
-//    if (auto utilajPlastic = dynamic_cast<UtilajPlastic*>(utilaj.get())) {
-//        std::cout << "\tAngajatul " + angajat->getNume() + " " + angajat->getPrenume() + " manevreaza utilajul pentru deseurile de plastic -> " + utilajPlastic->getNume() + "\n";
-//        return;
-//    }
-//
-//    if (auto utilajSticla = dynamic_cast<UtilajSticla*>(utilaj.get())) {
-//        std::cout << "\tAngajatul " + angajat->getNume() + " " + angajat->getPrenume() + " manevreaza utilajul pentru deseurile de sticla -> "+ utilajSticla->getNume() + "\n";
-//        return;
-//    }
-//}
-
 
 #endif
