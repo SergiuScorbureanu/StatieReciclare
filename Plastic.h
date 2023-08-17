@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Deseu.h"
 
-class Plastic {
+class Plastic : public Deseu {
 private:
     std::string tip;
     float greutate{};
@@ -14,7 +15,7 @@ public:
     Plastic(std::string tip, float greutate);
     Plastic(const Plastic& other);
     Plastic& operator=(const Plastic& other);
-    ~Plastic() = default;
+    ~Plastic() override;
 
     friend std::ostream& operator<<(std::ostream& os, const Plastic& plastic);
 

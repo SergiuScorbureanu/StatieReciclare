@@ -23,16 +23,14 @@ public:
     UtilajSticla& operator=(const UtilajSticla& other);
     ~UtilajSticla();
     friend std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla);
-    bool verificare(Sticla &sticla_) override;
-    void procesare(Sticla &sticla_) override;
+    bool verificare(Deseu &deseu) override;
+    void procesare(Deseu &deseu) override;
     void golire() override;
-    void prelucrare(Sticla sticla_) override;
+    void prelucrare(Deseu &deseu) override;
     std::shared_ptr<Utilaj> clone() const override
     {
         return std::make_shared<UtilajSticla>(*this);
     }
-
-    const std::string &getNume() const;
 };
 
 

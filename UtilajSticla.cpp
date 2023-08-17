@@ -1,7 +1,6 @@
 #include "UtilajSticla.h"
 
 #include <utility>
-#include "Exceptii.h"
 
 UtilajSticla::UtilajSticla(std::string nume, std::string producator, float capacitateMax, float totalReciclat, float totalMateriePrima) {
     this->nume = std::move(nume);
@@ -34,29 +33,31 @@ std::ostream& operator<<(std::ostream& os, const UtilajSticla& utilajSticla) {
     return os;
 }
 
-bool UtilajSticla::verificare(Sticla &sticla) {
+bool UtilajSticla::verificare(Deseu &deseu) {
 
+    auto sticla = dynamic_cast<Sticla*>(&deseu);
     std::vector<std::string> culori = {"rosu", "galben", "albastru", "violet", "maro"};
 
     for(const auto&c : culori) {
-        if(c == sticla.getCuloare())
+        if(c == sticla->getCuloare())
             return true;
     }
-    throw eroare_deseu_sticla("\tDeseul introdus nu poate fi reciclat!");
+    return false;
 }
 
-void UtilajSticla::procesare(Sticla &sticla){
+void UtilajSticla::procesare(Deseu &deseu){
 
+    auto sticla = dynamic_cast<Sticla*>(&deseu);
     std::cout << "\n\tSe proceseaza deseul din sticla...";
-    double greutateMin = sticla.getGreutate() * 0.6;
-    double greutateMax = sticla.getGreutate() * 0.9;
+    double greutateMin = sticla->getGreutate() * 0.6;
+    double greutateMax = sticla->getGreutate() * 0.9;
     double greutatePierduta = greutateMin + static_cast <float> (rand()) /
                                            (static_cast <float> (RAND_MAX / (greutateMax - greutateMin)));
-    sticla.setGreutate(greutatePierduta);
+    sticla->setGreutate(greutatePierduta);
 
-    this->totalMateriePrima += sticla.getGreutate();
+    this->totalMateriePrima += sticla->getGreutate();
     this->totalReciclat++;
-    std::cout << "\n\tS-a obtinut o cantitate de " << sticla.getGreutate()
+    std::cout << "\n\tS-a obtinut o cantitate de " << sticla->getGreutate()
               << " kilograme de sticla bruta.";
 
     if (totalReciclat == capacitateMax) {
@@ -72,11 +73,13 @@ void UtilajSticla::golire(){
     std::cout << "\n\tUtilajul de reciclare a sticlei a fost golit." << std::endl;
 }
 
-void UtilajSticla::prelucrare(Sticla sticla) {
-    if(verificare(sticla))
-        procesare(sticla);
-}
-
-const std::string &UtilajSticla::getNume() const {
-    return nume;
+void UtilajSticla::prelucrare(Deseu &deseu) {
+    auto sticla = dynamic_cast<Sticla*>(&deseu);
+    if (sticla != nullptr) {
+        if (verificare(*sticla))
+            procesare(*sticla);
+        else {
+            std::cerr << "\n\tDeseul introdus nu poate fi reciclat!";
+        }
+    }
 }

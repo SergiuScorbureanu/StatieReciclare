@@ -22,15 +22,14 @@ public:
     UtilajPlastic& operator=(const UtilajPlastic& other);
     ~UtilajPlastic();
     friend std::ostream& operator<<(std::ostream& os, const UtilajPlastic& utilajPlastic);
-    bool verificare(Plastic &plastic_) override;
-    void procesare(Plastic &plastic_) override;
+    bool verificare(Deseu &deseu) override;
+    void procesare(Deseu &deseu) override;
     void golire() override;
-    void prelucrare(Plastic plastic_) override;
+    void prelucrare(Deseu &deseu) override;
     std::shared_ptr<Utilaj> clone() const override
     {
         return std::make_shared<UtilajPlastic>(*this);
     }
-    const std::string &getNume() const;
 };
 
 #endif //STATIERECICLARE_UTILAJPLASTIC_H

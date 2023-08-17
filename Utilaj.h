@@ -1,9 +1,9 @@
 #ifndef OOP_UTILAJ_H
 #define OOP_UTILAJ_H
 
-#include "Plastic.h"
 #include <iostream>
 #include <memory>
+#include "Deseu.h"
 
 class Utilaj {
 
@@ -13,7 +13,6 @@ private:
     int capacitateMax{};
     int totalReciclat{};
     float totalMateriePrima{};
-    Plastic plastic_;
 
 public:
     Utilaj() = default;
@@ -23,13 +22,10 @@ public:
     virtual ~Utilaj();
     virtual std::shared_ptr<Utilaj> clone() const = 0;
     friend std::ostream& operator<<(std::ostream& os, const Utilaj& utilaj);
-    virtual bool verificare(Plastic &plastic_);
-    virtual void procesare(Plastic &plastic_);
-    virtual void golire();
-    virtual void prelucrare(Plastic plastic_);
-    virtual bool verificare(Sticla &sticla_);
-    virtual void procesare(Sticla &sticla_);
-    virtual void prelucrare(Sticla sticla_);
+    virtual bool verificare(Deseu &deseu) = 0;
+    virtual void procesare(Deseu &deseu) = 0;
+    virtual void golire() = 0;
+    virtual void prelucrare(Deseu &deseu) = 0;
 };
 
 

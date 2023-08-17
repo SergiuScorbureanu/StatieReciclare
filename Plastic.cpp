@@ -7,13 +7,15 @@ Plastic::Plastic(std::string tip, float greutate) {
     this->greutate = greutate;
 }
 
-Plastic::Plastic(const Plastic& other) : tip(other.tip), greutate(other.greutate){}
+Plastic::Plastic(const Plastic& other) : Deseu(other), tip(other.tip), greutate(other.greutate){}
 
 Plastic& Plastic::operator=(const Plastic& other) {
     tip = other.tip;
     greutate = other.greutate;
     return *this;
 }
+
+Plastic::~Plastic() {}
 
 std::ostream& operator<<(std::ostream& os, const Plastic& plastic) {
     os << "{ tip: " << plastic.tip << ", "

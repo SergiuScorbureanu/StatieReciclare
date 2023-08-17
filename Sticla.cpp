@@ -7,13 +7,15 @@ Sticla::Sticla(std::string culoare, float greutate) {
     this->greutate = greutate;
 }
 
-Sticla::Sticla(const Sticla& other) : culoare(other.culoare), greutate(other.greutate){}
+Sticla::Sticla(const Sticla& other) : Deseu(other), culoare(other.culoare), greutate(other.greutate){}
 
 Sticla& Sticla::operator= (const Sticla& other) {
     culoare = other.culoare;
     greutate = other.greutate;
     return *this;
 }
+
+Sticla::~Sticla() {}
 
 std::ostream& operator<<(std::ostream& os, const Sticla& sticla) {
     os << "{ culoare: " << sticla.culoare << ", "

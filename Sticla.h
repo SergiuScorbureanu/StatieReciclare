@@ -3,8 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include "Deseu.h"
 
-class Sticla {
+class Sticla : public Deseu{
 private:
     std::string culoare;
     float greutate{};
@@ -14,7 +15,7 @@ public:
     Sticla(std::string culoare, float greutate);
     Sticla(const Sticla& other);
     Sticla& operator=(const Sticla& other);
-    ~Sticla() = default;
+    ~Sticla() override;
 
     friend std::ostream& operator<<(std::ostream& os, const Sticla& sticla);
 
